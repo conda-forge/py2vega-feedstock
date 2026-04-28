@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 56e7f7c338db8014658e728fa4c698d316b6ca2513d5ce9cc91007617e6aba90
 
 build:
@@ -16,13 +16,15 @@ build:
 
 requirements:
   host:
-    - python  >=3.10
+    - python {{ python_min }}
     - pip
   run:
-    - python  >=3.10
+    - python >={{ python_min }}
     - gast  >=0.7,<0.8
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - py2vega
 
